@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Босс семестра</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Босс семестра</h1>
+    <p>Введи предметы, сложность и настроение — получи образ финального босса.</p>
+    <nav id="mainNav" class="hidden">
+        <button onclick="showTab('gen')">Генерация</button>
+        <button onclick="showTab('history');loadHistory()">История</button>
+        <button onclick="showTab('saved');loadSaved()">Сохранённые</button>
+        <button onclick="showTab('favorites');loadFavorites()">Избранное</button>
+        <button onclick="showTab('collections');loadCollections()">Коллекции</button>
+        <button onclick="showTab('showcase');loadShowcase()">Общая витрина</button>
+        <button id="adminNavButton" class="hidden" onclick="showTab('admin');loadModeration()">Модерация</button>
+        <button onclick="logout()">Выйти</button>
+        <a href="/swagger-ui.html" target="_blank">Swagger</a>
+    </nav>
+</header>
+
+<main>
+    <section class="card" id="auth">
+        <h2>Вход / регистрация</h2>
+        <p class="muted">Сначала войди в аккаунт. Генерация, история и сохранение результатов появятся только после успешного входа.</p>
+        <input id="username" placeholder="логин">
+        <input id="password" placeholder="пароль" type="password">
+        <div class="row">
+            <button onclick="register()">Регистрация</button>
+            <button onclick="login()">Войти</button>
+        </div>
+        <div id="authStatus" class="status"></div>
+    </section>
+
+    <section class="card" id="welcome">
+        <h2>Добро пожаловать</h2>
+        <p>Это веб-сервис для генерации финального босса семестра. После входа ты сможешь создавать образы, отдельно сохранять лучшие результаты, добавлять их в избранное, собирать коллекции по семестрам и отправлять боссов на общую витрину.</p>
+    </section>
+
+    <section class="card tab hidden" id="gen">
+        <h2>Новый запрос</h2>
+        <label>Предметы, каждый с новой строки</label>
+        <textarea id="subjects" placeholder="Теория информации&#10;Криптография&#10;Java" oninput="renderSubjectSliders()"></textarea>
+        <div class="row between">
+            <label>Сложность по каждому предмету</label>
+            <b>Среднее: <span id="avgDifficulty">5</span>/10</b>
+        </div>
+        <div id="subjectSliders" class="slidersBox"></div>
+        <label>Эмоциональный фон</label>
+        <input id="emotion" placeholder="стресс, усталость, надежда">
+        <label>Стиль</label>
+        <select id="style">
+            <option>FANTASY</option>
+            <option>CYBERPUNK</option>
+            <option>COMIC</option>
+            <option>ABSTRACT_ART</option>
+        </select>
+        <button onclick="createBoss()">Сгенерировать</button>
+        <pre id="genStatus"></pre>
+        <div id="result"></div>
+    </section>
+
+    <section class="card tab hidden" id="history">
+        <h2>История запросов</h2>
+        <p class="muted">Здесь находятся все созданные запросы: завершённые, ошибочные и ещё не сохранённые.</p>
+        <button onclick="loadHistory()">Обновить историю</button>
+        <div id="historyList"></div>
+    </section>
+
+    <section class="card tab hidden" id="saved">
+        <h2>Сохранённые результаты</h2>
+        <p class="muted">Рита Мерзлякова
+            Рита Мерзлякова
+        </p>
+        <button onclick="loadSaved()">Обновить</button>
+        <div id="savedList"></div>
+    </section>
+
+    <section class="card tab hidden" id="favorites">
+        <h2>Избранное</h2>
+        <p class="muted">Избранное — это отдельная подборка понравившихся сохранённых или несохранённых боссов.</p>
+        <button onclick="loadFavorites()">Обновить избранное</button>
+        <div id="favoritesList"></div>
+    </section>
+
+    <section class="card tab hidden" id="collections">
+        <h2>Коллекция боссов</h2>
+        <p class="muted">Коллекции нужны для семестров: например, «Весна 2026». Внутри видны картинки и шкала эволюции сложности.</p>
+        <input id="collectionTitle" placeholder="Например: Весна 2026">
+        <button onclick="createCollection()">Создать коллекцию</button>
+        <div id="collectionsList"></div>
+    </section>
+
+    <section class="card tab hidden" id="showcase">
+        <h2>Общая публичная витрина лучших боссов</h2>
+        <p class="muted">Это одна общая витрина для всех пользователей. Сюда попадают только одобренные модератором изображения.</p>
+        <button onclick="loadShowcase()">Обновить</button>
+        <div id="showcaseList"></div>
+    </section>
+
+    <section class="card tab hidden" id="admin">
+        <h2>Модерация витрины</h2>
+        <p class="muted">Этот раздел видит только пользователь с ролью ADMIN. Учебный админ по умолчанию: admin / admin123.</p>
+        <button onclick="loadModeration()">Обновить модерацию</button>
+        <div id="moderationList"></div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
