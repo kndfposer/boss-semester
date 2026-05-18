@@ -1,0 +1,35 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#111827;color:#eef2ff}
+header{padding:28px;background:linear-gradient(135deg,#4f46e5,#111827);box-shadow:0 8px 30px #0006}
+h1{margin:0;font-size:42px}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button,a{border:0;border-radius:12px;padding:10px 14px;background:#818cf8;color:white;text-decoration:none;cursor:pointer}
+button:hover,a:hover{filter:brightness(1.08)}
+main{max-width:1180px;margin:24px auto;padding:0 16px}
+.card{background:#1f2937;border:1px solid #334155;border-radius:24px;padding:22px;margin-bottom:18px;box-shadow:0 18px 45px #0005}
+.hidden{display:none!important}
+input,textarea,select{display:block;width:100%;margin:8px 0 14px;padding:12px;border-radius:12px;border:1px solid #475569;background:#0f172a;color:#e5e7eb}
+textarea{min-height:110px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.item{background:#0f172a;border:1px solid #334155;border-radius:18px;padding:14px;overflow:hidden}
+.item img{width:100%;border-radius:14px;background:#111;margin:8px 0}
+.ok{color:#86efac}.err{color:#fca5a5}.muted{color:#cbd5e1}.status{display:block;margin-top:12px}.row{display:flex;gap:10px;align-items:center}.row.wrap{flex-wrap:wrap}.between{justify-content:space-between}
+pre{white-space:pre-wrap}
+.slidersBox{border:1px solid #334155;background:#111827;border-radius:16px;padding:12px;margin:8px 0 14px}
+.sliderItem{padding:10px;border-bottom:1px solid #334155}
+.sliderItem:last-child{border-bottom:0}
+.subjectDifficulty{margin:6px 0 0}
+.collectionAdd{margin-top:12px;padding-top:12px;border-top:1px solid #334155}
+.bossCard button{margin:4px 4px 4px 0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.badge{display:inline-block;border:1px solid #475569;border-radius:999px;padding:5px 9px;font-size:12px;background:#111827;color:#e5e7eb}
+.badge.good{border-color:#22c55e;color:#86efac}.badge.bad{border-color:#ef4444;color:#fca5a5}.badge.saved{border-color:#38bdf8;color:#7dd3fc}.badge.fav{border-color:#facc15;color:#fde68a}.mutedBadge{color:#94a3b8}
+.collectionCard h4{margin-bottom:6px}
+.timeline{display:flex;gap:12px;align-items:center;overflow-x:auto;padding:12px;background:#111827;border-radius:14px;border:1px solid #334155;margin:8px 0 14px}
+.timelinePoint{min-width:82px;text-align:center;border-radius:14px;padding:10px;background:#1f2937;border:1px solid #475569}
+.timelinePoint span{display:block;width:26px;height:26px;line-height:26px;border-radius:50%;background:#818cf8;margin:0 auto 5px}
+.timelinePoint b{display:block;color:#86efac}.timelinePoint small{color:#cbd5e1}
+.horizontalScroll{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 4px}
+.miniBoss{min-width:230px;max-width:260px;background:#111827;border:1px solid #334155;border-radius:16px;padding:12px}
+.miniBoss img{height:160px;object-fit:cover}
+.showcaseCard .muted{font-size:14px}
