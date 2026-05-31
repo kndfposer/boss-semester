@@ -121,6 +121,8 @@ function logout(){
     localStorage.removeItem('username');
     localStorage.removeItem('role');
     clearUserWorkspace();
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
     updateAuthUi('Вы вышли из аккаунта');
 }
 
