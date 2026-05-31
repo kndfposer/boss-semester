@@ -33,3 +33,10 @@ pre{white-space:pre-wrap}
 .miniBoss{min-width:230px;max-width:260px;background:#111827;border:1px solid #334155;border-radius:16px;padding:12px}
 .miniBoss img{height:160px;object-fit:cover}
 .showcaseCard .muted{font-size:14px}
+.notice {
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(183, 199, 255, 0.12);
+    border: 1px solid rgba(183, 199, 255, 0.25);
+    margin: 14px 0;
+}

@@ -53,6 +53,7 @@ async function register(){
             body:JSON.stringify({username:username.value,password:password.value})
         });
         setSession(d);
+        clearUserWorkspace();
         updateAuthUi('Регистрация прошла успешно. Вы вошли в систему.');
         await loadCollectionsSilent();
     }catch(e){
@@ -69,6 +70,7 @@ async function login(){
             body:JSON.stringify({username:username.value,password:password.value})
         });
         setSession(d);
+        clearUserWorkspace();
         updateAuthUi('Вход выполнен успешно. Теперь можно создавать генерации.');
         await loadCollectionsSilent();
     }catch(e){
@@ -86,6 +88,30 @@ function setSession(d){
     localStorage.setItem('role', currentRole);
 }
 
+function clearUserWorkspace(options = {}){
+    const keepForm = Boolean(options.keepForm);
+
+    if (!keepForm) {
+        if (typeof subjects !== 'undefined') subjects.value = '';
+        if (typeof emotion !== 'undefined') emotion.value = '';
+        if (typeof style !== 'undefined') style.value = 'FANTASY';
+        if (typeof subjectSliders !== 'undefined') subjectSliders.innerHTML = '';
+        if (typeof avgDifficulty !== 'undefined') avgDifficulty.textContent = '5';
+    }
+
+    if (typeof genStatus !== 'undefined') {
+        genStatus.textContent = '';
+        genStatus.className = '';
+    }
+    if (typeof result !== 'undefined') result.innerHTML = '';
+    if (typeof historyList !== 'undefined') historyList.innerHTML = '';
+    if (typeof favoritesList !== 'undefined') favoritesList.innerHTML = '';
+    if (typeof savedList !== 'undefined') savedList.innerHTML = '';
+    if (typeof collectionsList !== 'undefined') collectionsList.innerHTML = '';
+    if (typeof moderationList !== 'undefined') moderationList.innerHTML = '';
+    collectionsCache = [];
+}
+
 function logout(){
     token = '';
     currentUser = '';
@@ -94,6 +120,7 @@ function logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('role');
+    clearUserWorkspace();
     updateAuthUi('Вы вышли из аккаунта');
 }
 
@@ -129,6 +156,7 @@ function subjectDifficultyValues(){
 }
 
 async function createBoss(){
+    clearUserWorkspace({keepForm: true});
     genStatus.textContent = 'Выполняется генерация...';
     genStatus.className = '';
     result.innerHTML = '';
@@ -243,6 +271,7 @@ async function saveBoss(id,value){
 function prepareClone(id){
     api(`/api/boss/${id}`, {headers:headers()}).then(d => {
         fillGenerationForm(d);
+        result.innerHTML = `<div class="notice">Вы изменяете параметры готового образа. Ниже показан исходный вариант, новый результат появится здесь после генерации.</div>` + renderBoss(d, 'template');
         genStatus.textContent = `Параметры запроса #${id} перенесены в форму. Измени их и нажми «Сгенерировать».`;
         genStatus.className = 'ok';
     }).catch(e => alert(e.message));
@@ -265,6 +294,7 @@ async function cloneBoss(id){
 
     try{
         showTab('gen');
+        clearUserWorkspace({keepForm: true});
         genStatus.textContent = 'Выполняется новая генерация на основе старого запроса...';
         result.innerHTML = '';
         const d = await api(`/api/boss/${id}/clone`,{

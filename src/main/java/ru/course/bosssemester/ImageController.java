@@ -1,4 +1,4 @@
-package ru.course.bosssemester.api;
+package ru.course.bosssemester;
 
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import ru.course.bosssemester.dto.BossDtos.*;
 import ru.course.bosssemester.entity.*;
-import ru.course.bosssemester.patterns.adapter.ImageGenerationResult;
+import ru.course.bosssemester.patterns.ImageGenerationResult;
 import ru.course.bosssemester.patterns.builder.*;
 import ru.course.bosssemester.patterns.chain.*;
 import ru.course.bosssemester.patterns.memento.*;

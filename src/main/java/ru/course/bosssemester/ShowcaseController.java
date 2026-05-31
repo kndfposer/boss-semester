@@ -1,4 +1,4 @@
-package ru.course.bosssemester.api;
+package ru.course.bosssemester;
 
 import org.springframework.web.bind.annotation.*;
 import ru.course.bosssemester.dto.BossDtos.*;

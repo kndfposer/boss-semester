@@ -1,4 +1,4 @@
-package ru.course.bosssemester.patterns.adapter;
+package ru.course.bosssemester.patterns;
 
 import org.springframework.stereotype.Component;
 import ru.course.bosssemester.config.GigaChatProperties;

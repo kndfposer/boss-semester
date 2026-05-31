@@ -1,4 +1,4 @@
-package ru.course.bosssemester.api;
+package ru.course.bosssemester;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
